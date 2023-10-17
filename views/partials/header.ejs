@@ -1,0 +1,43 @@
+<!-- IMPORTING THE SCRIPT FOR NOTY -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+
+<!-- SETTING THE HEADER FOR ALL PAGES AFTER CREATE SESSION TRIGGER -->
+<header>
+    <nav class="navbar navbar-dark bg-primary">
+     <div class="container-fluid">
+         <a class="navbar-brand" href="/">Placement Cell Dashboard</a>
+        <% if(locals.user) { %>
+         <a class="navbar-brand" href="/">Hello <%=locals.user.name%></a>
+         <form class="d-flex">
+            <a class="navbar-brand" href="/company/">Company-Dashboard</a>
+            <a class="navbar-brand" href="/users/fetchdata">GETREPORTS</a>
+            <a class="navbar-brand" href="/users/SignOut">Signout</a>
+         </form>
+          <% } %>
+    </div>
+    </nav>
+</header>
+
+<script>
+    <!-- SCRIPT FOR SETTING THE FLASH MESSGAE -->
+    <% if(flash.success && flash.success.length > 0){%>
+        new Noty({
+            theme:"relax",
+            text:"<%=flash.success%>",
+            type : 'success',
+            layout:'topRight',
+            timeout:1500
+            }).show();
+    <%}%>
+    <% if(flash.error && flash.error.length > 0){%>
+        new Noty({
+            theme:"relax",
+            text:"<%=flash.error%>",
+            type : 'error',
+            layout:'topRight',
+            timeout:1500
+            }).show();
+    <%}%>
+    
+</script>

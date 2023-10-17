@@ -1,7 +1,8 @@
 require("dotenv").config();
 
 const express = require('express');
-const port = 5001;
+const port = 8000;
+const path = require("path");
 
 // Create an express app
 const app = express();
@@ -19,15 +20,18 @@ app.use(express.urlencoded({extended:true}));
 app.use(cors());
 
 
-//setting the view engine as ejs
-app.set("view engine", "ejs");
-app.set("views", './views');
+//setting view engine
+app.set('view engine', "ejs");
+app.set("views", path.join(__dirname,"views"));
+
+//setting the statics
+app.use(express.static('assets'));
 
 //to store session cookie in database
 app.use(
     session({
       name: "PlacementCell",
-      secret:process.env.SECRET_KEY, // secret key for encryption of cookies, change it everytime you deploy your application on a server
+      secret:process.env.SECRET_KEY,
       saveUninitialized: false,
       resave: false,
       cookie:{

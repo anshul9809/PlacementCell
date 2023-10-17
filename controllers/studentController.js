@@ -3,34 +3,34 @@ const Student = require("../models/student");
 const Company = require("../models/company");
 
 //creating the student
-module.exports.createreq = async function(req,resp){
+module.exports.createreq = async function(req,res){
 
     try{
 
         if (!req.isAuthenticated()) {
 
-           return resp.redirect("/users/login");
+           return res.redirect("/users/login");
         }
         let studnt=[{}];
 
         console.log('Adding a new Student ');
 
-        return resp.render('createStudent',{studnt});
+        return res.render('createStudent',{studnt});
 
 
     }catch(error){
         console.log(`Error during submit the sigup form:  ${error}`);
-        resp.redirect("back");
+        res.redirect("back");
     }
 }
 
 //creating the stduent in DB
-module.exports.createStudent = async function(req,resp){
+module.exports.createStudent = async function(req,res){
 
     try {
 
       if (!req.isAuthenticated()) {
-        return resp.redirect("/users/login");
+        return res.redirect("/users/login");
       }
 
       let IsStudent = await Student.findOne({email:req.body.studentemail});
@@ -53,63 +53,63 @@ module.exports.createStudent = async function(req,resp){
 
         if (!newStudent) {
           console.log("error in creating new student");
-          return resp.redirect("back");
+          return res.redirect("back");
         }
         req.flash("success", "Create Successfully");
-        return resp.redirect("/");
+        return res.redirect("/");
 
       }else{
         req.flash("error", "E-Mail ID Already present");
-        return resp.redirect("back");
+        return res.redirect("back");
       }
     } catch (error) {
       console.log(`Error during submit the sigup form:  ${error}`);
-      resp.redirect("back");
+      res.redirect("back");
     }
 
 }
 
 //viewing the student details
-module.exports.viewdata = async function(req,resp){
+module.exports.viewdata = async function(req,res){
 
      try {
        if (!req.isAuthenticated()) {
-         return resp.redirect("/users/login");
+         return res.redirect("/users/login");
        }
 
        let studnt = await Student.findById(req.params.id);
 
-       return resp.render("viewstudent",{studnt});
+       return res.render("viewstudent",{studnt});
 
      } catch (error) {
        console.log(`Error during submit the sigup form:  ${error}`);
-       resp.redirect("back");
+       res.redirect("back");
      }
 
 }
 
-module.exports.updatereq = async function(req,resp){
+module.exports.updatereq = async function(req,res){
 
     try {
 
       if (!req.isAuthenticated()) {
-        return resp.redirect("/users/login");
+        return res.redirect("/users/login");
       }
 
       let studnt = await Student.findById(req.params.id);
 
-      return resp.render("editStudent", { studnt });
+      return res.render("editStudent", { studnt });
     } catch (error) {
       console.log(`Error during submit the sigup form:  ${error}`);
-      resp.redirect("back");
+      res.redirect("back");
     }
 }
 
-module.exports.updtedone = async function(req,resp){
+module.exports.updtedone = async function(req,res){
 
     try {
       if (!req.isAuthenticated()) {
-        return resp.redirect("/users/login");
+        return res.redirect("/users/login");
       }
 
       let IsStudent = await Student.findOne({ email: req.body.studentemail });
@@ -128,24 +128,24 @@ module.exports.updtedone = async function(req,resp){
 
         await IsStudent.save();
 
-        req.flash("success", "Successfully Updated");
-        return resp.redirect("/");
+        req.flash("success", "Details Updated Successfully");
+        return res.redirect("/");
 
       } else {
-        return resp.redirect("back");
+        return res.redirect("back");
       }
     } catch (error) {
       console.log(`Error during submit the sigup form:  ${error}`);
-      resp.redirect("back");
+      res.redirect("back");
     }
 }
 
 // DELETE THE STUDENT
-module.exports.deletedata = async function(req,resp){
+module.exports.deletedata = async function(req,res){
 
   try {
     if (!req.isAuthenticated()) {
-      return resp.redirect("/users/login");
+      return res.redirect("/users/login");
     }
 
     let studnt = await Student.findById(req.params.id);
@@ -175,11 +175,11 @@ module.exports.deletedata = async function(req,resp){
         }
     }
     req.flash("success", "Deleted Successfully");
-    return resp.redirect('/');
+    return res.redirect('/');
 
   } catch (error) {
     console.log(`Error during submit the sigup form:  ${error}`);
-    resp.redirect("back");
+    res.redirect("back");
   }
 
 

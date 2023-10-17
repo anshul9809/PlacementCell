@@ -1,0 +1,55 @@
+ <fieldset>
+    <legend>BATCH NAME : </legend>
+    <div class="mb-3">
+        <input type="text" class="form-control" id="input-batchname" name="studentbatch" value="<%=studnt.batch%>">
+    </div>
+</fieldset>
+
+<fieldset>
+    <legend>STUDENT DETAILS: </legend>
+    <div class="mb-3">
+        <label for="input-studentname" class="form-label">Student Name</label>
+        <input type="text" class="form-control" id="input-studentname" name="studentname" value="<%=studnt.name%>">
+    </div>
+    <div class="mb-3">
+        <label for="input-email" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="input-email" placeholder="name@example.com" name="studentemail" value="<%=studnt.email%>">
+    </div>
+    <div class="mb-3">
+        <label for="input-mobile" class="form-label">Mobile Number</label>
+        <input type="text" class="form-control" id="input-mobile"  name="studentmobileno" value="<%=studnt.mobilenumber%>">
+    </div>
+    <div class="mb-3">
+        <label for="input-clgname" class="form-label">College Name</label>
+        <input type="text" class="form-control" id="input-clgname" name="studentclgname" value="<%=studnt.collegename%>">
+    </div>
+    <div class="mb-3">
+       <label for="pstatus" class="form-label">Placement Status</label>
+        <select class="form-select" aria-label="Default select example" name="plcemntstatus" id="pstatus">
+            <option selected disabled><%=studnt.clgplacemnt%></option>
+                <option value="Placed">Placed</option>
+                <option value="Not Placed">Not Placed</option>                          
+        </select>
+    </div>
+</fieldset>
+
+
+<fieldset>
+    <legend>COURSE SCORE : </legend>
+
+    <div class="mb-3" style="display: flex;justify-content: space-between;">
+
+        <div class="mb-3">
+            <label for="input-dsascore" class="form-label">DSA SCORE</label>
+            <input type="text" class="form-control" id="input-dsascore" name="studentdsascore" value="<%=studnt.dsascore%>">
+        </div>
+        <div class="mb-3">
+            <label for="input-webscore" class="form-label">WEB DEV SCORE</label>
+            <input type="text" class="form-control" id="input-dsascore" name="studentwebscore" value="<%=studnt.webdevscore%>">
+        </div>
+        <div class="mb-3">
+            <label for="input-reactscore" class="form-label">REACT SCORE</label>
+            <input type="text" class="form-control" id="input-dsascore" name="studentreactscore" value="<%=studnt.reactscore%>">
+        </div>
+    </div>
+</fieldset>

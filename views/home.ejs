@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>PLACEMENTCELL</title>
+</head>
+
+<body>
+    <!-- PARTIALS FOR HEADER -->
+    <%- include('partials/header') %>
+    
+    <div class="w-75 mx-auto mt-5">
+
+        <input class="form-control" id="myInput" type="text" placeholder="Search.." style="border: 3px solid black;font-size: x-large;">
+        <br>
+
+        <div class="row">
+            <div class="col-6">
+                <h1>All Students</h1>
+            </div>
+            <div class="col-6 d-flex justify-content-end">
+                <a href="/student/create" type="button" class="btn btn-primary align-self-center">+ Add Student</a>
+            </div>
+        </div>
+
+       <% if(students.length > 0) {%>
+        <div class="mt-3 mb-3">   
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                    <th scope="col">Batch</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">DSA</th>
+                    <th scope="col">WEB</th>
+                    <th scope="col">REACT</th>
+                    <th scope="col">Interview</th>
+                    <th scope="col" class="text-end">Action</th>
+                    </tr>
+                </thead>
+               
+                <tbody id="myTable">
+                    <% for(let student of students) {%>
+                        <tr>
+                            <th scope="row"><%=student.batch%></th>
+                            <td><%=student.name%></td>
+                            <td><%=student.email%></td>
+                            <td><%=student.mobilenumber%></td>
+                            <td><%=student.dsascore%></td>
+                            <td><%=student.webdevscore%></td>
+                            <td><%=student.reactscore%></td>
+                            <% if(student.interviews.length) {%>
+                                <td>
+                                    <% for(let company of student.interviews){%>
+                                        <a href =" " id="compnay_name"><%=company.companyname%></a>
+                                    <%}%>
+                                </td>
+                            <%}else{%>
+                                <td>NILL</td>
+                            <%}%>
+                            <td style="display: flex;justify-content:space-around;align-items: center;">
+                                <a href="/student/view/<%=student.id%>" type="button" class="btn btn-warning btn-small m-2">View</a>
+                                <a href="/student/update/<%=student.id%>" type="button" class="btn btn-success btn-small  m-2">Edit</a>
+                                <a href="/student/delete/<%=student.id%>" type="button" class="btn btn-danger btn-small">Delete</a>
+                            </td>
+                        </tr>
+                    <%}%>
+                     
+                </tbody>
+            </table>
+        </div>
+        <%}else{%>
+            <div class="w-75 mx-auto mt-5">
+                <h2>NO RECORDS ARE FOUND.............:(</h2>
+            </div>
+        <%}%>
+    
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <script>
+        // SEARCH BAR WITH CHANGE STATUS FUNCTIONALITY
+        $(document).ready(function(){
+            $("#myInput").on("keyup", function() {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+            $('#compnay_name').css("fontSize", "0.9rem");
+        });
+    </script>
+</body>
+</html>
