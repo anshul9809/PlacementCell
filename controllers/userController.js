@@ -50,7 +50,7 @@ module.exports.CreateUser = async function (req, res) {
       await newuser.save();
 
       if (!newuser) {
-        console.log("error while creating new user");
+        req.flash("error", "Error while creating the user");
         return res.redirect("back");
       }
       return res.redirect("/users/login");
@@ -61,14 +61,14 @@ module.exports.CreateUser = async function (req, res) {
     }
   } 
   catch (error) {
-    console.log(`Error during submitting the sigup form:  ${error}`);
+    req.flash("error", "Error while submitting the form");
     res.redirect("back");
   }
 };
 
 //signin and creating the session
 module.exports.CreateSession = function (req, res) {
-  req.flash("success", "Yayy !!! Logged In Successfully");
+  req.flash("success", "Login Successfull");
   return res.redirect("/");
 };
 
@@ -77,7 +77,7 @@ module.exports.signout = function (req, res) {
   req.logout(function(err) {
     if (err) { return next(err); }
     else{
-      req.flash("success", "Ooops !!! Logged Out Successfully");
+      req.flash("success", "Log Out Successfull");
       return res.redirect('/');
     }
    

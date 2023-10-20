@@ -1,43 +1,23 @@
 <!-- IMPORTING THE SCRIPT FOR NOTY -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
-
-<!-- SETTING THE HEADER FOR ALL PAGES AFTER CREATE SESSION TRIGGER -->
-<header>
-    <nav class="navbar navbar-dark bg-primary">
-     <div class="container-fluid">
-         <a class="navbar-brand" href="/">Placement Cell Dashboard</a>
-        <% if(locals.user) { %>
-         <a class="navbar-brand" href="/">Hello <%=locals.user.name%></a>
-         <form class="d-flex">
-            <a class="navbar-brand" href="/company/">Company-Dashboard</a>
-            <a class="navbar-brand" href="/users/fetchdata">GETREPORTS</a>
-            <a class="navbar-brand" href="/users/SignOut">Signout</a>
-         </form>
-          <% } %>
+<link rel="stylesheet" href="/css/navbar.css">
+<header class="flex">
+    <div class="navbar-container flex">
+        <h1><a href="/">Placement</a></h1>
+        <% if(locals.user) { %>            
+            <nav class="top-navbar">
+                <ul class="navbar">
+                    <li><a class="top-nav-link" href="/users/fetchdata">Reports</a></li>
+                    <li><a class="top-nav-link" href="/company/">Company</a></li>
+                    <li><a class="top-nav-link" href="/users/signout/">Signout</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
+        <%}%>            
     </div>
-    </nav>
 </header>
+<script src="/js/navbar.js"></script>
 
-<script>
-    <!-- SCRIPT FOR SETTING THE FLASH MESSGAE -->
-    <% if(flash.success && flash.success.length > 0){%>
-        new Noty({
-            theme:"relax",
-            text:"<%=flash.success%>",
-            type : 'success',
-            layout:'topRight',
-            timeout:1500
-            }).show();
-    <%}%>
-    <% if(flash.error && flash.error.length > 0){%>
-        new Noty({
-            theme:"relax",
-            text:"<%=flash.error%>",
-            type : 'error',
-            layout:'topRight',
-            timeout:1500
-            }).show();
-    <%}%>
-    
-</script>

@@ -13,7 +13,7 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passpostLocalStrategy');
 const MongoStore = require('connect-mongo');
-
+const expressLayout = require("express-ejs-layouts");
 const flash = require('connect-flash');
 const flashmiddleware = require('./config/flashMessagesMiddleware');
 app.use(express.urlencoded({extended:true}));
