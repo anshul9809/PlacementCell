@@ -13,7 +13,6 @@ module.exports.createreq = async function(req,res){
         }
         let studnt=[{}];
 
-        console.log('Adding a new Student ');
 
         return res.render('createStudent',{studnt});
 

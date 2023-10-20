@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.my-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.form-wrapper-parent{
+    width: 30%;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 2px 1px rgb(74, 75, 75);
+    display: grid;
+    place-items: center;
+}
+.form-wrapper-parent h1{
+    margin: 0;
+    padding: 10px;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    border-bottom: 3px solid black;
+}
+fieldset{
+    border: 0;
+}
+.form-wrapper{
+    width: 70%;
+    margin-top: 20px;
+    padding: 10px;
+}
+.form-group{
+    width: 100%;
+    min-height: 60px;
+    position: relative;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+.form-group-inner{
+    display: flex;
+    border: 1px solid #c1c1c1;
+}
+.form-group input,
+.form-group select{
+    width: 99%;
+    min-height: 40px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1px solid black;
+    outline: none;
+    text-indent: 10px;
+    font-size: 16px;
+    color: rgb(58, 58, 75);
+    letter-spacing: 0.5px;
+}
+
+.form-group input:focus,
+.form-group select:focus{
+    border: 0;
+    box-shadow: 0px 0px 3px 1px rgb(13, 154, 182);
+}
+.form-group label{
+    font-size: 1.1rem;
+    color: #0f0f0f;
+}
+.submit-div{
+    width: 100%;
+    min-height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.btn{
+    margin: 20px;
+    height: 40px;
+    cursor: pointer;
+    background: #0275d8;
+    color: white;
+    font-size: 1.1rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    border: 0;
+    box-shadow: 0px 0px 2px rgb(13, 154, 182);
+    border-radius: 5px;
+    padding: 5px;
+}
+.btn:hover{
+    background: #0e82e7;
+    transform: translateY(5);
+    box-shadow: 0px 0px 4px black;
+}
+.btn a{
+    color: white;
+    text-decoration: none;
+}
+
+.disabled{
+    background-color: rgba(0,0,0,0.2) !important;
+    cursor: not-allowed;
+}

@@ -35,6 +35,7 @@ module.exports.signup = function (req, res) {
 module.exports.CreateUser = async function (req, res) {
   try {
     if (req.body.password != req.body.confirmpassword) {
+
         req.flash("error", "Please check your password again..");
         return res.redirect("back");
     }
@@ -47,8 +48,7 @@ module.exports.CreateUser = async function (req, res) {
         email: req.body.email,
         password: req.body.password,
       });
-      await newuser.save();
-
+      let result = await newuser.save();
       if (!newuser) {
         req.flash("error", "Error while creating the user");
         return res.redirect("back");

@@ -2,24 +2,20 @@ const input = document.getElementById("search-student");
 const table = document.getElementById("student-table");
 const statusChange = document.getElementById("changebutton");
 const trow = table.getElementsByTagName("tr");
+
+
+input.addEventListener("keyup", filterTable);
 Array.from(trow).forEach((row, index) => {
   row.addEventListener('click', (event) => {
-    console.log("target is ",event.target);
-    console.log("row is ", row);
     if(event.target.id == "changebutton"){
-        let item = row.getElementsByClassName("select");
-        console.log("item is ", item);
-        // item.remove(item.selectedIndex);
-        item.querySelector("#delete-option");
-        // row.find("#istatus").prop( "disabled", false );
-        console.log(item.selectedIndex);
-        row.getElementByNames("isStatus")[0].attr("disabled", "false");
+        let select = row.getElementsByClassName("select")[0];
+        select.removeChild(select.getElementsByTagName("option")[0]);
+        select.disabled = false;
     }
   });
 }); 
 
 
-input.addEventListener("keyup", filterTable);
 
 
 function filterTable(){
@@ -29,17 +25,12 @@ function filterTable(){
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];
         if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            tr[i].style.display = "";
-        } else {
-            tr[i].style.display = "none";
-        }
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
         }
     }
-}
-
-function changeInterviewStatus(){
-    let self = this;
-    console.log(self);
 }

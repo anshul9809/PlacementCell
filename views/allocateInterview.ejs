@@ -3,79 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>INTERVIEW</title>
+    <link rel="stylesheet" href="/css/studentform.css">
 </head>
 
 <body>
      <!-- PARTIALS FOR HEADER -->
     <%- include('partials/header') %>
-
-
-            <form class="w-50  mx-auto mt-4" action="/company/scheduleInterview" method="POST">
-
-                <div class="mb-3">
-                    <label for="batchname" class="form-label">Batch</label>
-                    <select class="form-select" aria-label="Default select example" name="batchname" id="batchname">
+    <div class="my-container">
+        <div class="form-wrapper">
+            <form action="/company/scheduleInterview" method="POST">
+                <div class="form-group">
+                    <label for="batchname">Batch</label>
+                    <select name="bathcname" id="batchname">
                         <option selected disabled>Select Batch</option>
 
                         <%for(let batch of batch_array){%>
                         <option value="<%=batch%>"><%= batch %></option>
-                         <%}%>   
+                         <%}%> 
                     </select>
                 </div>
-
-
-                <div class="mb-3">
-                    <label for="studentname" class="form-label">Student Name</label>
-                    <select class="form-select" aria-label="Default select example" name="studentname" id="studentname">
+                <div class="form-group">
+                    <label for="studentname">Student Name</label>
+                    <select name="studentname" id="studentname">
 
                     </select>
                 </div>
-
-            <div class="mb-3">
-                <label for="input-companyname" class="form-label">Company</label>
-                <input type="text" class="form-control" id="input-companyname" name="companyname">
-            </div>
-
-            <div class="mb-3">
-                <label for="input-date" class="form-label">Date</label>
-                <input type="date" class="form-control" id="input-date" name="companydate">
-            </div>
-
-            <div>
-                <div class="d-flex justify-content-start">
-                    <a href="/company/" type="button" class="btn btn-primary align-self-center">Cancel</a>
+                <div class="form-group">
+                    <label for="input-companyname">Company</label>
+                    <input type="text" id="input-companyname" name="companyname">
                 </div>
-                <div class="d-flex justify-content-end" style="margin-top: -38px;">
-                    <button class="btn btn-primary align-self-center">Schedule Interview</button>
-                </div>  
-            </div>
-    </form>
-    <%- include('partials/flashMessages') %>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    <script>
-            var studslist=  JSON.parse('<%- JSON.stringify(students) %>');
-            var selectname = $('#studentname');
-            let clicked=0;
-            $('#batchname').click(function(){
-                clicked=0;
-                selectname.empty();
-            })
-            $('#studentname').click(function(){
+                <div class="form-group">
+                    <label for="input-date">Date</label>
+                    <input type="date" id="input-date" name="companydate">
+                </div>
+                <div class="form-group">
+                </div>
                 
-                let batchvalue = $('#batchname').val();
-                for(let st of studslist){
-                    
-                    if(batchvalue === st.batch && clicked == 0 ){
-                       let newoption = `<option value=${st._id}>${st.name} ( ${st.email} )</option>`;
-                       selectname.append(newoption);
-                    }
+                
+                
+                <div class="submit-div">
+                    <button class="btn"><a href="/company/">Cancel</a></button>
+                    <button class="btn" type="submit">Schedule Interview</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <%- include('partials/flashMessages') %>
+    <script>
+        let studentsList = JSON.parse('<%- JSON.stringify(students) %>');
+
+        let select = document.getElementById("studentname");
+        let checked = 0;
+        const batchName = document.getElementById("batchname");
+
+        select.addEventListener("click", fillNames);
+        batchName.addEventListener("click", batchField);
+
+        function batchField(){
+            clicked=0;
+            select.querySelectorAll('option').forEach(option => option.remove())
+        }
+
+        function fillNames(){
+            let batchvalue = batchName.value;
+            for(let st of studentsList){
+                            
+                if(batchvalue === st.batch && clicked == 0 ){
+                    let newOption = document.createElement("option");
+                    newOption.value = `${st._id}`;
+                    newOption.innerHTML = `${st.name} ( ${st.email} )`;
+                    select.appendChild(newOption);
                 }
-                clicked=1;
-            })
+            }
+            clicked=1;
+
+        }
     </script>
 </body>
 </html>

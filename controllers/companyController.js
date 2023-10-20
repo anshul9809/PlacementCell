@@ -119,7 +119,6 @@ module.exports.updateRecords = async function(req,resp){
       return resp.redirect("/users/login");
     }
     let present=false;
-
     let studnt = await Student.findById(req.params.id);
     if(studnt){
 
@@ -127,7 +126,7 @@ module.exports.updateRecords = async function(req,resp){
 
         for(let cmpy of studnt.interviews){
           if(cmpy.companyname == req.body.cname){
-            cmpy.result = req.body.companyresult;
+            cmpy.result = req.body.isStatus;
             studnt.save();
             present=true;
             break;
@@ -144,7 +143,7 @@ module.exports.updateRecords = async function(req,resp){
 
           for (let stdid of compname.students) {
             if (stdid.student._id == req.params.id) {
-              stdid.result = req.body.companyresult;
+              stdid.result = req.body.isStatus;
               compname.save();
             }
           }

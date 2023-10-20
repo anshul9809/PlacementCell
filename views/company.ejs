@@ -47,7 +47,7 @@
                             <td>
                                 <form style="display: flex;align-items: center;justify-content: center;" action="/company/update/<%=student.id%>" method="post">
                                     <input hidden type="text" name="cname" value="<%=student.interviews[i].companyname%>">
-                                    <select class="select" aria-label="Default select example" name="istatus" id="istatus" disabled style="min-width: 130px;">
+                                    <select class="select" name="isStatus" id="isStatus" disabled style="min-width: 130px;">
                                             <option selected class="selected" id="delete-options"><%=student.interviews[i].result%></option>
                                             <option value="Selected">Selected</option>
                                             <option value="Not Selected">Not Selected</option> 
@@ -73,9 +73,6 @@
         </div>
     </section>
     
-    <script>
-            
-    </script>
     <script src="/js/home.js"></script>
     <%- include('partials/flashMessages') %>
 </body>

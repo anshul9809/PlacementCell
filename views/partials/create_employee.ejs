@@ -1,20 +1,25 @@
 
  <!-- SIGNUP-FORM -->
- <div class="mb-3">
-    <label for="input-username" class="form-label">User Name</label>
-    <input type="text" class="form-control" id="input-username" name="username">
+ <div class="form-group">
+    <div class="form-group-inner">
+        <label for="username"><i class="fa-solid fa-user"></i></label><input type="text" name="username" id="username"  placeholder="Username" autocomplete="off" required>
+    </div>
+    <small></small>
+ </div>
+<div class="form-group"><div class="form-group-inner">
+    <label for="email"><i class="fa-solid fa-envelope"></i></label><input type="text" name="email" id="email" placeholder="name@example.com" autocomplete="off" required>
 </div>
-<div class="mb-3">
-    <label for="input-email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="input-email" placeholder="name@example.com" name="email">
+<small></small>
 </div>
-<div class="mb-3">
-    <label for="input-password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="input-password" name="password">
+<div class="form-group">
+    <div class="form-group-inner">
+        <label for="password"><i class="fa-solid fa-unlock"></i></label><input type="password" name="password" id="password" placeholder="Password" autocomplete="off" required>
+<label class="show" id="show">show</label>
+    </div>
+    <small></small>
 </div>
-<div class="mb-3">
-    <label for="input-confirm-password" class="form-label">Confirm Password</label>
-    <input type="password" class="form-control" id="input-confirm-password" name="confirmpassword">
+<div class="form-group"><div class="form-group-inner">
+    <label for="confirm-password"><i class="fa-solid fa-lock"></i></label><input type="password" name="confirmpassword" id="confirm-password" placeholder="Confirm-password" autocomplete="off" required>
 </div>
-
-
+<small></small>
+</div>
