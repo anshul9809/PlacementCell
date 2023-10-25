@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>COMPANY</title>
-    <link rel="stylesheet" href="/css/home.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/home.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -14,10 +15,10 @@
     <section class="flex">
         <div class="container flex">
             <h1 class="body-heading">Interviews</h1>
-                <div class="controls flex">
-                    <button class="btn"><a href="/company/allocateinterview">Allocate Interview</a></button>
-                    <input type="search" class="search" id="search-student" placeholder="Search...">
-                </div>
+            <div class="controls flex">
+                <button class="btn"><a href="/company/allocateinterview">Allocate Interview</a></button>
+                <input type="search" class="search" id="search-student" placeholder="Search...">
+            </div>
             <div class="data-row">
             <% if(studentlist.length > 0) {%>
                 <table>
@@ -35,37 +36,37 @@
                     <tbody id="student-table">
                         <% for(let student of studentlist){%>
                            <%i=0%>
-                           <% while(i< student.interviews.length){%>
-                        
-                        <tr>
-                            <th><%=student.interviews[i].companyname%></th>
-                            <td><%=student.name%></td>
-                            <td><%=student.email%></td>
-                            <td><%=student.mobilenumber%></td>
-                            <td><%=student.batch%></td>
-                            <td><%=student.interviews[i].scheduledate%></td>
-                            <td>
-                                <form style="display: flex;align-items: center;justify-content: center;" action="/company/update/<%=student.id%>" method="post">
-                                    <input hidden type="text" name="cname" value="<%=student.interviews[i].companyname%>">
-                                    <select class="select" name="isStatus" id="isStatus" disabled style="min-width: 130px;">
-                                            <option selected class="selected" id="delete-options"><%=student.interviews[i].result%></option>
-                                            <option value="Selected">Selected</option>
-                                            <option value="Not Selected">Not Selected</option> 
-                                            <option value="On Hold">On Hold</option>
-                                            <option value="Pending">Pending</option>
-                                    </select>
-                                    <a type="button" id="changebutton" style="cursor: pointer">Change</a>
-                                    <button type ="submit" class="btn btn-update">UPDATE</button>
-                                </form>
-                            </td>
-                        </tr>
+                           <% while(i < student.interviews.length){%>
+                                <tr>
+                                    <th><%=student.interviews[i].companyname%></th>
+                                    <td><%=student.name%></td>
+                                    <td><%=student.email%></td>
+                                    <td><%=student.mobilenumber%></td>
+                                    <td><%=student.batch%></td>
+                                    <td><%=student.interviews[i].scheduledate%></td>
+                                    <td>
+                                        <form style="display: flex;align-items: center;justify-content: center;" action="/company/update/<%=student.id%>" method="post">
+                                            <input hidden type="text" name="cname" value="<%=student.interviews[i].companyname%>">
+                                            <select class="select" name="isStatus" id="isStatus" disabled style="min-width: 130px;">
+                                                    <option selected class="selected" id="delete-options"><%=student.interviews[i].result%></option>
+                                                    <option value="Selected">Selected</option>
+                                                    <option value="Not Selected">Not Selected</option> 
+                                                    <option value="On Hold">On Hold</option>
+                                                    <option value="Pending">Pending</option>
+                                            </select>
+                                            <a type="button" id="changebutton" style="cursor: pointer">Change</a>
+                                            <button type ="submit" class="btn btn-update">UPDATE</button>
+                                        </form>
+                                    </td>
+                                </tr>
                         <%
                         i++}
                         %>
-                    </tbody>
-                </table>
+            <%}%>
+            
+                        </tbody>
+                    </table>
             <%}
-            }
             else{%>
                 <p style="font-size: 2rem;font-weight:800">No Records Found...</p>    
                 <%}%>
