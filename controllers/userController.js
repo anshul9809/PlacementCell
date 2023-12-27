@@ -34,7 +34,7 @@ module.exports.signup = function (req, res) {
 //creating the user from the data
 module.exports.CreateUser = async function (req, res) {
   try {
-    if (req.body.password != req.body.confirmpassword) {
+    if (req.body.password !== req.body.confirmpassword) {
 
         req.flash("error", "Please check your password again..");
         return res.redirect("back");

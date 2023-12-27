@@ -1,2 +1,4 @@
 S.No, Name, Email,Collegename,Clgplacemnt,Mobilenumber,Batch, DSAScore, WebDevScore, ReactScore, Interview, Date, Result
-1,aman,aman@gmail.com,my college,Not Placed,1234567890,Carrear Camp,120,120,120,facebook,2023-10-19,Pending
+1,aman,123@example.com,aman school,Placed,123456789,careear,120,120,120,twitter,2023-10-20,Not Selected
+2,Arpit,arpit@gmail.com,SRGC,Not Placed,9634879856,carear camp,130,130,130,meta,2023-10-27,Not Selected
+3,Dhruv,dhruv@gmail.com,SRGC,Not Placed,74178521148,Sharpener,120,120,120,full stack,2023-11-04,Selected,x,2023-12-22,Pending
